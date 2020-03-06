@@ -1,4 +1,4 @@
-# lg_movel
+# reading_notes_flutter
 
 A new Flutter project.
 
