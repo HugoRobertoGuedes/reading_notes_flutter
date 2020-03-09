@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lg_movel/controllers/EbookController.dart';
 import 'package:lg_movel/controllers/NotaController.dart';
+import 'package:lg_movel/models/books.dart';
+import 'package:lg_movel/models/statement.dart';
 import 'package:lg_movel/pages/favs.dart';
 import 'package:lg_movel/pages/notes.dart';
 import 'package:lg_movel/pages/home.dart';
 import 'package:lg_movel/pages/perfil.dart';
 import 'package:lg_movel/pages/search.dart';
 import 'package:lg_movel/pages/viewpdf.dart';
+import 'package:lg_movel/services/StatementService.dart';
 import 'package:lg_movel/widgets/forms/NovaNota.dart';
 import 'package:lg_movel/widgets/layout/appbar.dart';
 import 'package:lg_movel/widgets/layout/menu.dart';
 import 'package:provider/provider.dart';
+
 
 void main() => runApp(MultiProvider(
         providers: [
@@ -31,17 +35,16 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  
   // Globals
   Widget _page = Home();
   String nameBar = 'Home';
-
+  String file;
+  int selectMenuIndex = 0;
   // Pages
   var home = Home();
   var notas = Notas();
-  var buscar = Buscar();
-  var favoritos = Favoritos();
   var perfil = Perfil();
-  var viwerpdf = ViewPdf();
 
   // Widgets
   // * Forms
@@ -49,16 +52,17 @@ class _MainPageState extends State<MainPage> {
 
   // App Icon
   bool visibleButton = false;
-  int lastpgage = 0;
+  int lastpage = 0;
+  int optionPage = 0;
 
   // Functions
   Widget appIcoButton() {
     Widget button;
-    switch (lastpgage) {
+    switch (optionPage) {
       case 5:
         button = FlatButton.icon(
             onPressed: () {
-              alterPage(1);
+              alterPage(lastpage);
             },
             icon: Icon(Icons.first_page),
             label: Text("Voltar"));
@@ -87,58 +91,76 @@ class _MainPageState extends State<MainPage> {
   }
 
   void alterPage(int value) {
-    print(value);
     setState(() {
       switch (value) {
         case 0:
           _page = home;
-          lastpgage = 0;
+          optionPage = 0;
           nameBar = 'LG School Mobile';
           visibleButton = false;
+          selectMenuIndex = 0;
           break;
         case 1:
           _page = notas;
-          lastpgage = 1;
+          optionPage = 1;
+          lastpage = 1;
           nameBar = 'Anotações';
           visibleButton = true;
+          selectMenuIndex = 0;
           break;
         case 2:
-          _page = buscar;
-          lastpgage = 0;
+          _page = Buscar(openPdf: openPdfViewer);
+          optionPage = 0;
           nameBar = 'E-books';
           visibleButton = false;
+          selectMenuIndex = 0;
           break;
         case 3:
-          _page = favoritos;
-          lastpgage = 0;
+          _page = Favoritos(openPdf: openPdfViewer);
+          optionPage = 0;
           nameBar = 'Favoritos';
           visibleButton = false;
+          selectMenuIndex = 0;
           break;
         case 4:
           _page = perfil;
-          lastpgage = 0;
+          optionPage = 0;
           nameBar = 'Meu Perfil';
           visibleButton = false;
+          selectMenuIndex = 0;
           break;
         case 6:
           _page = novaNotaForm;
-          lastpgage = 5;
+          optionPage = 5;
+          lastpage = 1;
           nameBar = 'Adicionar nova nota';
           visibleButton = false;
+          selectMenuIndex = 0;
           break;
         case 5:
-          _page = viwerpdf;
-          lastpgage = 0;
-          nameBar = 'PDF';
+          _page = ViewPdf(
+            namefile: file,
+          );
+          optionPage = 5;
+          lastpage = 2;
           visibleButton = false;
           break;
         default:
           _page = home;
-          lastpgage = 0;
+          lastpage = 0;
           nameBar = 'Home';
           visibleButton = false;
       }
     });
+  }
+
+  void openPdfViewer(String nameFile) async {
+    EbookController ebookController = Provider.of<EbookController>(context, listen: false);
+    Book ebook = ebookController.getByFileName(nameFile);
+    nameBar = ebook.titulo;
+    file = nameFile;
+    selectMenuIndex = 2;
+    alterPage(5);
   }
 
   @override
@@ -157,6 +179,8 @@ class _MainPageState extends State<MainPage> {
         ),
         bottomNavigationBar: Menu(
           func: alterPage,
+          customSelectedindex: selectMenuIndex,
+          setCustomIndex: (selectMenuIndex != 0),
         ));
   }
 }

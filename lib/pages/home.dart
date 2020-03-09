@@ -92,7 +92,7 @@ class _HomeState extends State<Home> {
                   padding: EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
-                      "Entra os melhores leitores",
+                      "Entre os melhores leitores",
                       style: TextStyle(
                           fontFamily: 'Schyler', fontWeight: FontWeight.w800),
                     ),

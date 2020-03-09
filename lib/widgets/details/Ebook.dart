@@ -6,8 +6,9 @@ import 'package:provider/provider.dart';
 
 class Ebooks extends StatefulWidget {
   var info = new Book();
-
-  Ebooks({this.info});
+  Function funcOpen;
+  Function funcLoader;
+  Ebooks({this.info, this.funcOpen});
 
   @override
   _EbooksState createState() => _EbooksState();
@@ -39,10 +40,12 @@ class _EbooksState extends State<Ebooks> {
                   LineIcons.bookmark,
                 ),
                 label: const Text(
-                  'Leitura',
+                  'Abrir',
                   style: TextStyle(color: Colors.purple),
                 ),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  widget.funcOpen(widget.info.nameFile);
+                },
               ),
               FlatButton.icon(
                 icon: widget.info.favorite
@@ -55,8 +58,9 @@ class _EbooksState extends State<Ebooks> {
                   ),
                 ),
                 onPressed: () {
-                    EbookController ebookController = Provider.of<EbookController>(context, listen: false);
-                    ebookController.favoritar(widget.info);
+                  EbookController ebookController =
+                      Provider.of<EbookController>(context, listen: false);
+                  ebookController.favoritar(widget.info);
                 },
               ),
             ],

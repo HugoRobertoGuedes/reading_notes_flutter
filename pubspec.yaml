@@ -31,12 +31,10 @@ dependencies:
   slimy_card: ^1.0.1
   extended_image: ^0.7.1
   synchronized: ^2.2.0
-  native_pdf_renderer: ^1.8.1
-  native_pdf_view: ^2.2.0
-  path_provider: ^1.6.5
-
-
-
+  flutter_plugin_pdf_viewer: any
+  http: ^0.12.0+4
+  shared_preferences: ^0.5.6+1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -56,7 +54,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - assets/images/lg_logo.png
-   - assets/mongodb.pdf
+   - assets/pdfs/book_01.pdf
+   - assets/pdfs/book_02.pdf
+   - assets/pdfs/book_03.pdf
+   - assets/pdfs/book_04.pdf
+   - assets/pdfs/book_05.pdf
+   - assets/pdfs/book_06.pdf
+   - assets/pdfs/book_07.pdf
+   - assets/pdfs/book_08.pdf
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

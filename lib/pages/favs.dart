@@ -5,6 +5,10 @@ import 'package:lg_movel/widgets/details/Ebook.dart';
 import 'package:provider/provider.dart';
 
 class Favoritos extends StatefulWidget {
+  Function openPdf;
+  
+  Favoritos({this.openPdf});
+
   @override
   FavoritosState createState() => FavoritosState();
 }
@@ -19,6 +23,7 @@ class FavoritosState extends State<Favoritos> {
         final item = list[index];
         return Ebooks(
           info: item,
+          funcOpen: widget.openPdf,
         );
       },
     );

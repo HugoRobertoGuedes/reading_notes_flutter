@@ -1,0 +1,21 @@
+mutation Insert {
+  insert_books(objects: [
+    {titulo: "30 Projetos com Arduino", namefile: "book_01", favorito: false, escritor: "Simon Monk"}, 
+    {titulo: "Anatomia & Fisiologia para leigos", namefile: "book_02", favorito: false, escritor: "Julia Gabriela"}, 
+    {titulo: "Cálculo para leigos", namefile: "book_03", favorito: false, escritor: "Maria Silva Gutz"}, 
+    {titulo: "Desenvolvimento de Aplicativos Android para leigos", namefile: "book_04", favorito: false, escritor: "Francine da Silva Oliveira"}, 
+    {titulo: "Eletronica para leigos", namefile: "book_05", favorito: false, escritor: "Marcelo dos Santos"}, 
+    {titulo: "Guia de conversação para leigos", namefile: "book_06", favorito: false, escritor: "Ricardo de Oliveira"}, 
+    {titulo: "Matematica e Pré-algebra para leigos", namefile: "book_07", favorito: false, escritor: "Marilia da Silva"}, 
+    {titulo: "Mongo DB", namefile: "book_08", favorito: false, escritor: "Giovana do Santos"}
+  ]) {
+    affected_rows
+    returning {
+      titulo
+      namefile
+      id
+      favorito
+      escritor
+    }
+  }
+}

@@ -4,8 +4,10 @@ import 'package:line_icons/line_icons.dart';
 
 class Menu extends StatefulWidget {
   Function func;
+  int customSelectedindex = 0;
+  bool setCustomIndex = false;
 
-  Menu({@required this.func});
+  Menu({@required this.func, this.customSelectedindex = 0, this.setCustomIndex = false});
 
   @override
   _MenuState createState() => _MenuState();
@@ -43,7 +45,7 @@ class _MenuState extends State<Menu> {
                   backgroundColor: Colors.indigoAccent,
                 ),
                 GButton(
-                  icon: LineIcons.search,
+                  icon: LineIcons.book,
                   text: 'E-books',
                   backgroundColor: Colors.greenAccent,
                 ),
@@ -56,17 +58,15 @@ class _MenuState extends State<Menu> {
                   icon: LineIcons.user,
                   text: 'Perfil',
                   backgroundColor: Colors.indigo,
-                ),
-                GButton(
-                  icon: LineIcons.file_pdf_o,
-                  text: 'PDF',
-                  backgroundColor: Colors.indigo,
                 )
               ],
-              selectedIndex: _selectedIndex,
+              selectedIndex: widget.setCustomIndex
+                  ? widget.customSelectedindex
+                  : _selectedIndex,
               onTabChange: (index) {
                 widget.func(index);
                 setState(() {
+                  widget.setCustomIndex = false;
                   _selectedIndex = index;
                 });
               }),
