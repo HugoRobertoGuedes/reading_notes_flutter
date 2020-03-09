@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lg_movel/controllers/EbookController.dart';
 import 'package:lg_movel/models/books.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
 
 class Ebooks extends StatefulWidget {
   var info = new Book();
@@ -43,14 +45,19 @@ class _EbooksState extends State<Ebooks> {
                 onPressed: () {/* ... */},
               ),
               FlatButton.icon(
-                icon: Icon(LineIcons.heart_o),
+                icon: widget.info.favorite
+                    ? Icon(LineIcons.heart)
+                    : Icon(LineIcons.heart_o),
                 label: const Text(
                   'Favoritar',
                   style: TextStyle(
                     color: Colors.cyan,
                   ),
                 ),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                    EbookController ebookController = Provider.of<EbookController>(context, listen: false);
+                    ebookController.favoritar(widget.info);
+                },
               ),
             ],
           ),

@@ -40,7 +40,7 @@ class _MenuState extends State<Menu> {
                 GButton(
                   icon: LineIcons.list,
                   text: 'Notas',
-                  backgroundColor: Colors.teal,
+                  backgroundColor: Colors.indigoAccent,
                 ),
                 GButton(
                   icon: LineIcons.search,
@@ -50,13 +50,18 @@ class _MenuState extends State<Menu> {
                 GButton(
                   icon: LineIcons.heart,
                   text: 'Favoritos',
-                   backgroundColor: Colors.cyan,
+                  backgroundColor: Colors.cyan,
                 ),
                 GButton(
                   icon: LineIcons.user,
                   text: 'Perfil',
                   backgroundColor: Colors.indigo,
                 ),
+                GButton(
+                  icon: LineIcons.file_pdf_o,
+                  text: 'PDF',
+                  backgroundColor: Colors.indigo,
+                )
               ],
               selectedIndex: _selectedIndex,
               onTabChange: (index) {

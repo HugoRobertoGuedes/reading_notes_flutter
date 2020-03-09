@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -49,6 +48,16 @@ class _HomeState extends State<Home> {
                           fontWeight: FontWeight.w700),
                     ),
                   ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(
+                    child: Text(
+                      "E-books",
+                      style: TextStyle(
+                          fontFamily: 'Schyler', fontWeight: FontWeight.w800),
+                    ),
+                  ),
                 )
               ],
             )),
@@ -78,6 +87,16 @@ class _HomeState extends State<Home> {
                           fontWeight: FontWeight.w700),
                     ),
                   ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(
+                    child: Text(
+                      "Entra os melhores leitores",
+                      style: TextStyle(
+                          fontFamily: 'Schyler', fontWeight: FontWeight.w800),
+                    ),
+                  ),
                 )
               ],
             )),
@@ -105,6 +124,16 @@ class _HomeState extends State<Home> {
                           fontSize: 43,
                           fontFamily: 'Schyler',
                           fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(
+                    child: Text(
+                      "Baixo aproveitamento",
+                      style: TextStyle(
+                          fontFamily: 'Schyler', fontWeight: FontWeight.w800),
                     ),
                   ),
                 )

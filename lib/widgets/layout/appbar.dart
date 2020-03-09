@@ -16,11 +16,9 @@ class CustomAppBar extends StatefulWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        widget.nameBar,
-        style: TextStyle(fontFamily: 'Schyler', fontWeight: FontWeight.w900),
-      ),
+    return Text(
+      widget.nameBar,
+      style: TextStyle(fontFamily: 'Schyler', fontWeight: FontWeight.w900),
     );
   }
 }
